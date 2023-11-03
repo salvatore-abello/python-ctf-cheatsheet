@@ -84,7 +84,7 @@ def a:pass # or class a:pass
 
 ### No function call, no exec/eval, no \n, no spaces, no tabs
 ```py
-@print\r@set\r@open\r@input\rdef\x0ca:pass
+@print\r@set\r@open\r@input\rclass\x0ca:pass
 ```
 
 ### No ASCII letters
