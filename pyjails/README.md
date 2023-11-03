@@ -2,9 +2,10 @@
 
 ## Common payloads
 
-### no builtins, inside an interactive shell
+### no builtins, inside an interactive shell/multiple exec
 
 ```py
+# Thanks @Loldemort
 del __builtins__
 exec(input())
 ```
