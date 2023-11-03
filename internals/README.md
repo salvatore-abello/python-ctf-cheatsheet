@@ -123,7 +123,7 @@ sal@LAPTOP-K6PV3EII:~$ PYTHONHASHSEED=0 python3 hash.py
 
 The output will always be the same
 
-if `PYTHONHASHSEED` is passed, this is generated using this:
+if `PYTHONHASHSEED` is passed, it's going to be generated using this:
 
 ```py
 
