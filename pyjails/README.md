@@ -31,7 +31,7 @@ eval(input())
 # to stderr
 exit(set(open("flag")))
 exit(*open("flag"))
-help(*open("flag")) # this only works if stdout is closed
+help(*open("flag")) # this also works with (stdout/stderr) closed 
 open(*open("flag"))
 compile(".","flag","exec") # flag printed to stderr
 ast.parse(".", "flag") # only works if ast is imported
