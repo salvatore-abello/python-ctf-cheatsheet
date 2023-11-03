@@ -19,7 +19,7 @@ print(f"Payload: {base64.b64encode(pickle.dumps(f()))}")
 ### No R opcode
 
 ```py
-# https://github.com/gousaiyang/pickleasse
+# https://github.com/gousaiyang/pickleassem
 
 import pickle
 import pickletools
