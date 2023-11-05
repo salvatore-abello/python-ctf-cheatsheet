@@ -21,7 +21,7 @@ globals.__self__
 len.__self__
 __build_class__.__self__
 
-defined_function.__builtins__ # or __globals__
+defined_function.__globals__["__builtins__"]
 ```
 
 ### Spawning a shell
