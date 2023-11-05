@@ -133,3 +133,6 @@ __builtins__ = modules
 __builtins__ = os
 system("cat /flag")
 ```
+
+### builtins are deleted from everywhere:
+https://gist.github.com/CharlesAverill/e7fef5a6e078f14b7ac7b3d318e3e24f?permalink_comment_id=4749794#gistcomment-4749794
