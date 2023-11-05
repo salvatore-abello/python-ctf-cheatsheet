@@ -13,11 +13,13 @@ exec(input())
 ### Restore builtins
 ```py
 help.__call__.__builtins__ # or __globals__
-print.__self__.__builtins__
-dir.__self__.__builtins__
-globals.__self__.__builtins__
-len.__self__.__builtins__
-__build_class__.__builtins__
+license.__call__.__builtins__ # or __globals__
+credits.__call__.__builtins__ # or __globals__
+print.__self__
+dir.__self__
+globals.__self__
+len.__self__
+__build_class__.__self__
 
 defined_function.__builtins__ # or __globals__
 ```
