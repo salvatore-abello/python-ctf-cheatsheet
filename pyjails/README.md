@@ -15,11 +15,50 @@ exec(input())
 help.__call__.__builtins__ # or __globals__
 license.__call__.__builtins__ # or __globals__
 credits.__call__.__builtins__ # or __globals__
-print.__self__
-dir.__self__
-globals.__self__
-len.__self__
 __build_class__.__self__
+__import__.__self__
+abs.__self__
+aiter.__self__
+all.__self__
+anext.__self__
+any.__self__
+ascii.__self__
+bin.__self__
+breakpoint.__self__
+callable.__self__
+chr.__self__
+compile.__self__
+delattr.__self__
+dir.__self__
+divmod.__self__
+eval.__self__
+exec.__self__
+format.__self__
+getattr.__self__
+globals.__self__
+hasattr.__self__
+hash.__self__
+hex.__self__
+id.__self__
+input.__self__
+isinstance.__self__
+issubclass.__self__
+iter.__self__
+len.__self__
+locals.__self__
+max.__self__
+min.__self__
+next.__self__
+oct.__self__
+ord.__self__
+pow.__self__
+print.__self__
+repr.__self__
+round.__self__
+setattr.__self__
+sorted.__self__
+sum.__self__
+vars.__self__
 
 defined_function.__globals__["__builtins__"]
 ```
