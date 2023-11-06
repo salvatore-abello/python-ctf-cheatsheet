@@ -3,13 +3,13 @@
 ## Python Bytecode
 
 ### uncompyle6
-Python <= 3.8
+`Python <= 3.8`
 
 A cross-version Python bytecode decompiler
 https://github.com/rocky/python-uncompyle6
 
 ### pycdc
-Python <= 3.11
+`Python <= 3.11`
 
 C++ python bytecode disassembler and decompiler
 https://github.com/zrax/pycdc
