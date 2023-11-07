@@ -10,7 +10,8 @@ del __builtins__
 exec(input())
 ```
 
-### Restore builtins
+<details>
+<summary> ### Restore builtins </summary>
 ```py
 help.__call__.__builtins__ # or __globals__
 license.__call__.__builtins__ # or __globals__
@@ -62,6 +63,8 @@ vars.__self__
 
 defined_function.__globals__["__builtins__"]
 ```
+
+</details>
 
 ### Spawning a shell
 
