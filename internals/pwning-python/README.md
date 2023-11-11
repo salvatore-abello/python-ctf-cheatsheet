@@ -81,7 +81,7 @@ typedef struct _object {
     struct _typeobject *ob_type;
 } PyObject;
 
-# https://medium.com/@sergioli/how-python-objects-are-implemented-in-c-2f36ff8fb371
+// https://medium.com/@sergioli/how-python-objects-are-implemented-in-c-2f36ff8fb371
 ```
 
 So we can create an object like this:
