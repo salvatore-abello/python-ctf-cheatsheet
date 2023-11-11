@@ -1,6 +1,3 @@
-https://github.com/python/cpython/blob/38035fed9ba543d587c1fbba5c463d34edf3aff9/Include/cpython/object.h#L104
-https://github.com/python/cpython/blob/main/Objects/typeobject.c
-
 # Pwning python
 
 ## Strings introduction
