@@ -122,7 +122,8 @@ print(b) # Here we trigger tp_str
 
 Result:
 
-![image](https://hackmd.io/_uploads/Ski5bKpQa.png)
+<img width="518" alt="img1" src="https://github.com/salvatore-abello/python-ctf-cheatsheet/assets/107145304/c8096f9c-1c1e-42f1-8376-c2c9f616f3de">
+
 
 And that's it!
 
@@ -188,7 +189,7 @@ print(b) # Here we trigger tp_str
 
 And... We got a shell!
 
-![image](https://hackmd.io/_uploads/HytNSY6mp.png)
+<img width="518" alt="img1" src="https://github.com/salvatore-abello/python-ctf-cheatsheet/assets/107145304/c8096f9c-1c1e-42f1-8376-c2c9f616f3de">
 
 
 ## Note
