@@ -131,7 +131,7 @@ But... What if we don't have any one-gadgets!?
 
 Well...
 
-## calling system("/bin/sh")
+### calling system("/bin/sh")
 
 Somehow, we need to call `system("/bin/sh")`
 Luckily for us, when calling `r11`, python will pass the `ref_count` to that function as a first argument:
