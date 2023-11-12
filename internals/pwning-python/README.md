@@ -98,7 +98,27 @@ So we can create an object like this:
 
 ### Using a one gadget
 
-Since we only call a function without passing arguments to it, we can use a one gadget and hoping it works.
+Since we only call a function without passing arguments to it, we can use a one gadget and hoping it works. We need 112 bytes in order to define the field `tp_repr`:
+```c++
+{
+  ob_base = {
+    ob_base = {
+      ob_refcnt = 0x52,
+      ob_type = 0x555555acb9a0 <PyType_Type>
+    },
+    ob_size = 0x0
+  },
+  tp_name = 0x555555891a72 "type",
+  tp_basicsize = 0x378,
+  tp_itemsize = 0x28,
+  tp_dealloc = 0x555555724490 <type_dealloc>,
+  tp_vectorcall_offset = 0x190,
+  tp_getattr = 0x0,
+  tp_setattr = 0x0,
+  tp_as_async = 0x0,
+  tp_repr = 0x555555792990 <type_repr>,
+  [...]
+```
 
 Example:
 ```py
