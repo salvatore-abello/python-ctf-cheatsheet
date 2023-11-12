@@ -5,7 +5,7 @@
  - [RCE Using PyObj_FromPtr](https://github.com/salvatore-abello/python-ctf-cheatsheet/blob/main/internals/pwning-python/README.md#using-pyobj_fromptr)
     - [Using One-gadgets](https://github.com/salvatore-abello/python-ctf-cheatsheet/blob/main/internals/pwning-python/README.md#using-a-one-gadget)
     - [Calling system](https://github.com/salvatore-abello/python-ctf-cheatsheet/blob/main/internals/pwning-python/README.md#calling-systembinsh)
-    - [Calling system without libc leaks](https://github.com/salvatore-abello/python-ctf-cheatsheet/blob/main/internals/pwning-python/README.md#calling-systembinsh)
+    - [Calling system without libc leaks](https://github.com/salvatore-abello/python-ctf-cheatsheet/blob/main/internals/pwning-python/README.md#calling-systembinsh-without-libc-leaks)
     - [Notes](https://github.com/salvatore-abello/python-ctf-cheatsheet/blob/main/internals/pwning-python/README.md#note)
 
 ## Strings introduction
