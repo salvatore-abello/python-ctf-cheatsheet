@@ -1,5 +1,14 @@
 # Pwning python
 
+## Summary
+ - [Strings Introduction](https://github.com/salvatore-abello/python-ctf-cheatsheet/blob/main/internals/pwning-python/README.md#strings-introduction)
+ - [RCE Using PyObj_FromPtr](https://github.com/salvatore-abello/python-ctf-cheatsheet/blob/main/internals/pwning-python/README.md#using-pyobj_fromptr)
+    - [Using One-gadgets](https://github.com/salvatore-abello/python-ctf-cheatsheet/blob/main/internals/pwning-python/README.md#using-a-one-gadget)
+    - [Calling system](https://github.com/salvatore-abello/python-ctf-cheatsheet/blob/main/internals/pwning-python/README.md#calling-systembinsh)
+    - [Calling system without libc leaks](https://github.com/salvatore-abello/python-ctf-cheatsheet/blob/main/internals/pwning-python/README.md#calling-systembinsh)
+    - [Notes](https://github.com/salvatore-abello/python-ctf-cheatsheet/blob/main/internals/pwning-python/README.md#note)
+    - 
+
 ## Strings introduction
 
 In python, the string is located `0x20`/`0x30` (this depends on the python version) after `id(string)`
