@@ -4,6 +4,7 @@ Generally, by following this list you will be able to solve any pyjail and (mayb
  - Check what you have available (`builtins`, `keywords`, global/local variables, internal attributes (`__subclasses__`, `__globals__`, `__self__`, `__builtins__`, `__spec__`))
  - Check if builtins can be overridden (also check if `__builtins__` can be overridden):
      - If this is possible, this can be useful: https://rszalski.github.io/magicmethods/
+     - if you're able to reach the `__builtins__` module (not the dict), then you can override all builtins!
  - If the pyjail is built like this:
      ```py
      while True:
