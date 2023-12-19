@@ -209,13 +209,13 @@ You can also use generators or async functions.
 ### Bypass blacklists using generators
 
 ```py
+# Way better than (lambda x:x).__globals__
 (x for x in ()).gi_frame.f_builtins
 (x for x in ()).gi_frame.f_globals
 ```
 
 ### Bypass blacklists using asynchronous functions
 ```py
-# Way better than (lambda x:x).__globals__
-(x for x in ()).gi_frame.f_builtins
-(x for x in ()).gi_frame.f_globals
+async def a():pass
+a().cr_frame.f_globals
 ```
