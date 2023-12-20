@@ -56,7 +56,7 @@ assert hash(n) == hash(n % 0xfffffffffffffff8)
 hash(b"abobus") # Seems random
 ```
 
-Hash internally uses SipHash-2-4 with a random seed, called `_Py_HashSecret`, it's possible to extract this value using this script:
+Hash internally uses SipHash-2-4 with a random seed, called `_Py_HashSecret`, it's possible to extract that value using this script:
 
 ```py
 from ctypes import (
