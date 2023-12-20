@@ -146,7 +146,7 @@ print(bytes(buf))
 
 ```
 
-We can verify this using this script:
+We can verify that using this script:
 ```py
 import siphash # python -m pip install siphash
 
