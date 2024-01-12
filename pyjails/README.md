@@ -61,7 +61,7 @@ sorted.__self__
 sum.__self__
 vars.__self__
 
-defined_function.__globals__["__builtins__"]
+user_defined_function.__builtins__
 ```
 
 ### Spawning a shell
