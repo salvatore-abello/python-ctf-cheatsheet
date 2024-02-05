@@ -1,4 +1,4 @@
-# pyjail-cheatsheet
+# Python Ctf Cheatsheet
 
 ## Summary
  - [Internals](https://github.com/salvatore-abello/python-ctf-cheatsheet/tree/main/internals)
