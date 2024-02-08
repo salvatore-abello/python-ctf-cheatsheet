@@ -126,7 +126,7 @@ print(delete_me) # error
 ```py
 @exec
 @input
-def a:pass # or class a:pass
+def a():pass # or class a:pass
 ```
 
 ### No function call and no exec/eval
