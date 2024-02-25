@@ -136,7 +136,7 @@ def a():pass # or class a:pass
 @set
 @open
 @input
-def a:pass # or class a:pass
+def a():pass # or class a:pass
 ```
 
 ### No function call, no exec/eval, no \n, no spaces, no tabs
