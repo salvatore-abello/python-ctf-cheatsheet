@@ -257,7 +257,7 @@ repr(b)
 ```
 
 ## Note
-Since we there are other fields before `tp_str`, we can trigger the call with something like this:
+Since there are other fields before `tp_str`, we can trigger the call with something like this:
 
 ```py
 b.a
