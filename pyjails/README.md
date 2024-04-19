@@ -235,7 +235,7 @@ a = x()
 
 Then, this can be exploited in two different ways:
 
-## V1
+#### V1
 ```py
 # From https://blog.neilhommes.xyz/docs/Writeups/2024/bctf.html#awpcode---hard
 
@@ -284,7 +284,7 @@ print(co_code.hex())
 
 ```
 
-## V2
+#### V2
 This is only possible if the input is cut before being passed to `bytes.fromhex` (for example)
 
 ```py
