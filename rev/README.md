@@ -29,6 +29,8 @@ https://docs.python.org/3/library/pickletools.html
 
 [A GDB+GEF-style debugger for unloading Python pickles](https://github.com/Legoclones/pickledbg)
 
+### BetterPickledbg
+[pickledbg with steroids](https://github.com/salvatore-abello/BetterPickledbg)
 
 ## Pyarmor
 
