@@ -335,8 +335,8 @@ print(payload.hex().encode() + b" if __import__('os').system('cat /*') else 0")
 
 ### No CALL or LOAD_GLOBAL using LOAD_GLOBAL_BUILTIN and CALL_BUILTIN_CLASS
 From [Pycjail returns - ångstromCTF 2024](https://angstromctf.com/)
-The idea is to call the breakpoint() function using `LOAD_GLOBAL_BUILTIN` and `CALL_BUILTIN_CLASS`
-To avoid causing a segfault when calling breakpoint, we can purposely throw an exception by using, for example, `UNPACK_SEQUENCE_LIST` (using an unknown opcode works too)
+
+The idea is to call the breakpoint() function using `LOAD_GLOBAL_BUILTIN` and `CALL_BUILTIN_CLASS`. To avoid causing a segfault when calling breakpoint, we can purposely throw an exception by using, for example, `UNPACK_SEQUENCE_LIST` (using an unknown opcode works too)
 ```py
 from opcode import opmap
 
