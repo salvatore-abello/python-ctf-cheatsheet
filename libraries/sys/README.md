@@ -14,4 +14,5 @@ sys.breakpointhook()
 ## Useful gadgets
 ```py
 sys.call_tracing(<funcname>, <tuple>)
+sys._getframe(<depth>)
 ```
