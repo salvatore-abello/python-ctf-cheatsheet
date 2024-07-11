@@ -41,4 +41,4 @@ https://github.com/splitline/Pickora
 
 
 
-I'm a noob so that's all for now
+[More...](https://github.com/salvatore-abello/python-ctf-cheatsheet/tree/main/rev#pickle)
