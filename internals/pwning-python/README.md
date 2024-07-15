@@ -27,6 +27,12 @@ Example:
 0x7ffff73aa020: "Wow!"
 ```
 
+## Printing Python objects in gdb
+```
+p (PyTypeObject)*addr
+p (PyObject)*addr
+```
+
 ## Using PyObj_FromPtr
 
 We can create fake objects in order to gain RCE.
