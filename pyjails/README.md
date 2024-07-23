@@ -212,6 +212,12 @@ async def a():pass
 a().cr_frame.f_globals
 ```
 
+### Other ways to obtain a frame
+```py
+(sig:=help.__call__.__globals__["sys"].modules["_signal"],sig.signal(2, lambda *x: print(x[1])), sig.raise_signal(2))
+```
+
+
 ### No (), inside eval
 ```py
 
@@ -349,4 +355,9 @@ code = bytes([
 
 
 print(code.hex())
+```
+
+### Useful attributes
+```py
+user_defined_function.__closure__
 ```
