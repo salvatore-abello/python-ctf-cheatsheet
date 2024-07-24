@@ -360,4 +360,5 @@ print(code.hex())
 ### Useful attributes
 ```py
 user_defined_function.__closure__
+user_defined_class.__reduce_ex__(user_defined_class(), n)
 ```
