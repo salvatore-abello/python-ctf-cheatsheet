@@ -361,8 +361,9 @@ code = bytes([
 print(code.hex())
 ```
 
-### Useful attributes
+### Other useful things
 ```py
 user_defined_function.__closure__
 user_defined_class.__reduce_ex__(user_defined_class(), n)
+pdb.set_trace() # works also if __builtins__ is empty
 ```
