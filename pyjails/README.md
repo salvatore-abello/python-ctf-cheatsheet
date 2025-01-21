@@ -383,14 +383,13 @@ code = bytes([
 
 print(code.hex())
 ```
-
-# Credits
- - https://shirajuki.js.org/blog/pyjail-cheatsheet
- - https://jbnrz.com.cn/index.php/2024/05/19/pyjail/
-
 ### Other useful things
 ```py
 user_defined_function.__closure__
 user_defined_class.__reduce_ex__(user_defined_class(), n)
 pdb.set_trace() # works also if __builtins__ is empty
 ```
+
+# Credits
+ - https://shirajuki.js.org/blog/pyjail-cheatsheet
+ - https://jbnrz.com.cn/index.php/2024/05/19/pyjail/
