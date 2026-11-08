@@ -19,6 +19,8 @@ https://pylingual.io
 ### dis
 https://docs.python.org/3/library/dis.html
 
+## Marshal to pyc
+https://github.com/salvatore-abello/marshal2pyc
 
 ## Pickle
 
